@@ -1,5 +1,6 @@
 package project1;
 import javax.swing.*;
+import java.awt.Dimension;
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
@@ -97,33 +98,50 @@ public class UserInterface implements ActionListener
     {
         myFrame = new JFrame("Zork");
         entryField = new JTextField(34);
+        
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double width = screenSize.getWidth();
+        double height = screenSize.getHeight();
+        
+        double textHeight = height * 0.15;
+        double textWidth = height * 0.15;
+        double imgWidth = width * 0.9;
+        double imgHeight = height * 0.9;
+        
+        
+        myFrame.setPreferredSize(new Dimension((int)width, (int)height));
+        myFrame.setResizable(false);
 
         log = new JTextArea();
         log.setEditable(false);
-        JScrollPane listScroller = new JScrollPane(log);
-        JScrollPane text = new JScrollPane(log);
+        //JScrollPane listScroller = new JScrollPane(log);
+        JScrollPane textBox = new JScrollPane(log);
         JButton button = new JButton("Button 1");
         JButton button2 = new JButton("Button 2");
         JButton button3 = new JButton("Karta");
         JButton button4 = new JButton("Föremål");
         JButton button5 = new JButton("Pengar");
+        JButton button6 = new JButton("Föremål");
+        JButton button7 = new JButton("Pengar");
         
-        listScroller.setPreferredSize(new Dimension(100, 100));
-        listScroller.setMinimumSize(new Dimension(100,100));
+        //listScroller.setPreferredSize(new Dimension(200, 200));
+        //listScroller.setMinimumSize(new Dimension(200,200));
         
-        text.setPreferredSize(new Dimension(80, 100));
-        text.setMinimumSize(new Dimension(80,100));
+        textBox.setPreferredSize(new Dimension( (int)textWidth, (int)textHeight));
+        textBox.setMinimumSize(new Dimension( (int)textWidth , (int)textHeight));
         
 
         JPanel panel = new JPanel();
         image = new JLabel();
-        button.setPreferredSize(new Dimension(100, 20));
+        button2.setPreferredSize(new Dimension(100, 100));
+        button6.setPreferredSize(new Dimension(100, 100));
         
-        image.setPreferredSize(new Dimension(300, 300)); //bildstorlek, gör om till att skala
-        image.setMinimumSize(new Dimension(300,300)); //istället för att skära av
+        image.setPreferredSize(new Dimension((int)imgWidth, ((int)imgHeight) - (int)textHeight)); //bildstorlek, gör om till att skala
+        image.setMinimumSize(new Dimension((int)imgWidth, ((int)imgHeight) - (int)textHeight)); //istället för att skära av
         image.setHorizontalAlignment(JLabel.CENTER);
         
         JPanel p = new JPanel(new GridLayout(4,1));
+        JPanel p2 = new JPanel(new GridLayout(4,1));
         JPanel b = new JPanel();
         
         
@@ -132,14 +150,18 @@ public class UserInterface implements ActionListener
         p.add(button2);
         p.add(button3);
         
+        p2.add(button6);
+        p2.add(button7);
+        
         b.add(button4);
         b.add(button5);
 
         panel.setLayout(new BorderLayout());
         panel.add(image, BorderLayout.CENTER);
-        panel.add(text, BorderLayout.SOUTH);
+        panel.add(textBox, BorderLayout.AFTER_LAST_LINE);
         //panel.add(entryField, BorderLayout.NORTH);
         panel.add(p, BorderLayout.WEST);
+        panel.add(p2, BorderLayout.EAST);
         panel.add(b, BorderLayout.NORTH);
 
         //panel.add(p,BorderLayout.WEST);

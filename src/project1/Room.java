@@ -1,8 +1,17 @@
 package project1;
+import java.io.IOException;
 import java.net.URL;
+
+import javax.imageio.ImageIO;
+
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
@@ -25,16 +34,14 @@ public class Room
     private String description;
     private String pictureName;
     private HashMap<String,Room> exits;        // stores exits of this room.
+    private ImageIcon roomIcon;
 
-    /**
-     * Create a room described "description". Initially, it has no exits.
-     * "description" is something like "in a kitchen" or "in an open court 
-     * yard".
-     */
+
     public Room(String description, String pictureName) 
     {
         this.description = description;
         this.pictureName = pictureName;
+        createPicture();
         exits = new HashMap<String,Room>();
     }
 
@@ -87,21 +94,34 @@ public class Room
         return exits.get(direction);
     }
     
-    public ImageIcon getPicture()
-    {
+    public void createPicture()
+    {	/*Fixat skalningen så bilden skalar efter fönstret. Även delat upp getPicture i createPicture (som
+     	SKAPAR bilden och getPicture som hämtar den. Så man inte skapar om den varje gång man ska se bilden.*/
         URL imageURL = this.getClass().getClassLoader().getResource(pictureName);
+        
+        Dimension imgSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double width = (imgSize.getWidth()) * 1;
+        double height = (imgSize.getHeight()) * 1;
+
         if(imageURL == null){
             System.out.println("image not found");
-        	URL imageURL2 = this.getClass().getClassLoader().getResource("tomt.jpg");
-        	ImageIcon icon2 = new ImageIcon(imageURL2);
-        	return icon2;
+        	imageURL = this.getClass().getClassLoader().getResource("castle.gif");
+        	ImageIcon icon = new ImageIcon(imageURL);
+            Image scaledIm = icon.getImage().getScaledInstance((int)width, (int)height, Image.SCALE_FAST);
+            roomIcon = new ImageIcon(scaledIm);
         }
         else {
             ImageIcon icon = new ImageIcon(imageURL);
-            return icon;
+            Image scaledIm = icon.getImage().getScaledInstance((int)width, (int)height, Image.SCALE_FAST);
+            roomIcon = new ImageIcon(scaledIm);
 
         }
         
+    }
+    
+    public ImageIcon getPicture()
+    {	
+    	return roomIcon;
     }
 
 }
