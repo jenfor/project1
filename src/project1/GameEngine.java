@@ -60,6 +60,7 @@ public class GameEngine
         spel1 = new Room("vid spel 1","minispel1.jpg");
         spel2 = new Room("vid spel 2","strand.jpg");
         spel3 = new Room("vid spel 3","bro.jpg");
+
         
         // initialise room exits
         centrum.setExit("shop", shop);
@@ -71,6 +72,7 @@ public class GameEngine
         shop.setExit("centrum", centrum);
 
         tomt.setExit("centrum", centrum);
+        tomt.setExit("shop", shop);
 
         spel1.setExit("shop", shop);
 
@@ -135,7 +137,7 @@ public class GameEngine
     {
     	Room nextRoom = currentRoom.getExit(direction);
     	if (nextRoom == null)
-            gui.println("There is no door!");
+            gui.println("Du kan inte gå dit härifrån!");
         else {
             currentRoom = nextRoom;
             updateRoom();

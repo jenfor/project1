@@ -224,6 +224,10 @@ public class UserInterface implements ActionListener
         
       //panel.add(bc, BorderLayout.CENTER);
         panel.add(button8);
+        
+        panel.setPreferredSize(new Dimension((int)width, (int)height)); //bildstorlek, gör om till att skala
+        panel.setMinimumSize(new Dimension((int)width, (int)height)); //istället för att skära av
+        
 
         myFrame.getContentPane().add(panel, BorderLayout.NORTH);
 
@@ -249,7 +253,7 @@ public class UserInterface implements ActionListener
         mapButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-            	println("Du är i " + engine.currentRoom.getShortDescription());
+            	println("Du är " + engine.currentRoom.getShortDescription());
             }
         });
 
