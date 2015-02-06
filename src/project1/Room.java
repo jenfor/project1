@@ -123,6 +123,11 @@ public class Room
     {	
     	return roomIcon;
     }
+    
+    public HashMap<String,Room> getExits()
+    {
+    	return exits;
+    }
 
 }
 

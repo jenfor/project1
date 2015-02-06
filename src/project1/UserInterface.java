@@ -1,9 +1,12 @@
 package project1;
 import javax.swing.*;
-import java.awt.Dimension;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 import java.awt.image.*;
 
 /**
@@ -21,6 +24,7 @@ public class UserInterface implements ActionListener
     private JTextArea log;
     private JLabel image;
     ImageIcon ikon;
+    private JButton button;
     
 
     /**
@@ -96,7 +100,7 @@ public class UserInterface implements ActionListener
      */
     private void createGUI()
     {
-        myFrame = new JFrame("Zork");
+        myFrame = new JFrame("Spel");
         entryField = new JTextField(34);
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -116,13 +120,17 @@ public class UserInterface implements ActionListener
         log.setEditable(false);
         //JScrollPane listScroller = new JScrollPane(log);
         JScrollPane textBox = new JScrollPane(log);
-        JButton button = new JButton("Button 1");
-        JButton button2 = new JButton("Button 2");
+        
+        button = new JButton("Exit");
+        //JButton button = new JButton("Button 1");
+        JButton button2 = new JButton("Affär");
         JButton button3 = new JButton("Karta");
         JButton button4 = new JButton("Föremål");
         JButton button5 = new JButton("Pengar");
         JButton button6 = new JButton("Föremål");
         JButton button7 = new JButton("Pengar");
+        
+        
         
         //listScroller.setPreferredSize(new Dimension(200, 200));
         //listScroller.setMinimumSize(new Dimension(200,200));
@@ -145,10 +153,12 @@ public class UserInterface implements ActionListener
         JPanel b = new JPanel();
         
         
+        
         b.setLayout(new BoxLayout(b, BoxLayout.X_AXIS));
 
         p.add(button2);
         p.add(button3);
+        p.add(button);
         
         p2.add(button6);
         p2.add(button7);
@@ -171,6 +181,13 @@ public class UserInterface implements ActionListener
         // add some event listeners to some components
         myFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {System.exit(0);}
+        });
+        
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                engine.goRoomClick("shop");
+            }
         });
 
         entryField.addActionListener(this);
@@ -322,5 +339,14 @@ public class UserInterface implements ActionListener
         entryField.setText("");
 
         engine.interpretCommand(input);
+    }
+    
+    public void setButtons(HashMap<String,Room> exits)
+    {
+    	
+        /*Set keys = exits.keySet();
+        for(Iterator iter = keys.iterator(); iter.hasNext(); )
+        	button.setLabel((String)iter.next());*/
+        
     }
 }

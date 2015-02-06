@@ -60,22 +60,22 @@ public class GameEngine
         spel3 = new Room("vid spel 3","bro.jpg");
         
         // initialise room exits
+        centrum.setExit("shop", shop);
+        centrum.setExit("tomt", tomt);
         
-        centrum.setExit("west", shop);
-        centrum.setExit("east", tomt);
-        
-        shop.setExit("east", centrum);
+        shop.setExit("centrum", centrum);
 
-        tomt.setExit("west", centrum);
+        tomt.setExit("centrum", centrum);
 
-        spel1.setExit("east", shop);
+        spel1.setExit("shop", shop);
 
-        spel2.setExit("north", shop);
-        spel2.setExit("east", spel3);
+        spel2.setExit("shop", shop);
+        spel2.setExit("spel3", spel3);
 
-        spel3.setExit("west", spel2);
+        spel3.setExit("spel2", spel2);
 
         currentRoom = centrum;  // start game outside
+        
     }
 
     /**
@@ -124,13 +124,27 @@ public class GameEngine
      * Try to go to one direction. If there is an exit, enter the new
      * room, otherwise print an error message.
      */
+    
+    public void goRoomClick(String direction)
+    {
+    	Room nextRoom = currentRoom.getExit(direction);
+    	if (nextRoom == null)
+            gui.println("There is no door!");
+        else {
+            currentRoom = nextRoom;
+            gui.println(currentRoom.getLongDescription());
+            gui.showImage(currentRoom);
+        }
+    }
+    
     private void goRoom(Command command) 
     {
-        if(!command.hasSecondWord()) {
+        
+    	/*if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             gui.println("Go where?");
             return;
-        }
+        }*/
     
         String direction = command.getSecondWord();
 
