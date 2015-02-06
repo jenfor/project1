@@ -25,8 +25,9 @@ public class UserInterface implements ActionListener
     private JTextArea log;
     private JLabel image;
     ImageIcon ikon;
-    private JButton button;
+    private JButton exitButton;
     private HashMap<String,JButton> exitButtons = new HashMap<String,JButton>();
+    private JPanelWithBackground panel;
     
 
     /**
@@ -123,10 +124,10 @@ public class UserInterface implements ActionListener
         //JScrollPane listScroller = new JScrollPane(log);
         JScrollPane textBox = new JScrollPane(log);
         
-        button = new JButton("Exit");
+        exitButton = new JButton("Exit");
         //JButton exitButton = new JButton("Button 1");
         JButton button2 = new JButton("Affär");
-        JButton button3 = new JButton("Karta");
+        JButton mapButton = new JButton("Karta");
         JButton button4 = new JButton("Föremål");
         JButton button5 = new JButton("Pengar");
         JButton button6 = new JButton("Föremål");
@@ -149,7 +150,8 @@ public class UserInterface implements ActionListener
         {
         	String tempString = "" + i;
         	//exitButtons.put(tempString, new JButton("Exit"));
-        	exitButtons.put("0", button9);
+        	//exitButtons.put("0", button9);
+        	exitButtons.put(tempString, new JButton("ooo"));
         }
         
         //listScroller.setPreferredSize(new Dimension(200, 200));
@@ -160,11 +162,11 @@ public class UserInterface implements ActionListener
         textBox.setPreferredSize(new Dimension( (int)textWidth, (int)textHeight));
         textBox.setMinimumSize(new Dimension( (int)textWidth , (int)textHeight));
         
-
-        JPanel panel = new JPanel();
+        //******************************************
+        //JPanel panel = new JPanel();
         
         try {
-			panel = new JPanelWithBackground("sno.jpg");
+			panel = new JPanelWithBackground("stig.jpg");
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			
@@ -192,14 +194,21 @@ public class UserInterface implements ActionListener
         b.setLayout(new BoxLayout(b, BoxLayout.X_AXIS));
 
         p.add(button2);
-        p.add(button3);
-        p.add(button);
+        p.add(mapButton);
+        p.add(exitButton);
         
-        p2.add(button6);
-        p2.add(button7);
+        //p2.add(button6);
+        //p2.add(button7);
         
         b.add(button4);
         b.add(button5);
+        
+        
+		for(i = 0; i < 3; i++)
+		{
+			String temp = "" + i;
+			p2.add(exitButtons.get(temp));
+		}
         
       //bc.add(button8);
 
@@ -227,6 +236,20 @@ public class UserInterface implements ActionListener
             @Override
             public void actionPerformed(ActionEvent event) {
                 engine.goRoomClick("shop");
+            }
+        });
+        
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                engine.goRoomClick(engine.getCurrentRoom().getExits());
+            }
+        });
+        
+        mapButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+            	println("Du är i " + engine.currentRoom.getShortDescription());
             }
         });
 
@@ -386,15 +409,36 @@ public class UserInterface implements ActionListener
 		//JButton exitButton = new JButton("setButton");
     	//exitButton.setLabel("setButton");
     	//p.add(exitButton);
-    	button.setLabel(exit);
+    	exitButton.setLabel(exit);
         /*Set keys = exits.keySet();
         for(Iterator iter = keys.iterator(); iter.hasNext(); )
         	button.setLabel((String)iter.next());*/
         
     }
 	
-	public void setAllButtons(HashMap<String,Room> exits)
+	public void setAllButtons(HashMap<String,String> exits)
     {
+		
+		int i;
+		for(i = 0; i < 3; i++)
+		{
+			String temp = "" + i;
+			String exitString;
+			
+			exitString = exits.get(temp);
+			exitButtons.get(temp).setLabel(exitString);
+
+			//exitButtons.get(temp);
+			//setLabel(exitString);
+			
+		}
+		
+		/*Set keys = exits.keySet();
+		for(Iterator iter = keys.iterator(); iter.hasNext(); )
+		{
+			iter. = new JButton("exit");
+		}*/
+		
 		//JButton exitButton = new JButton("setButton");
     	//exitButton.setLabel("setButton");
     	//p.add(exitButton);
@@ -404,4 +448,10 @@ public class UserInterface implements ActionListener
         	button.setLabel((String)iter.next());*/
         
     }
+	
+	public void setBackground(Image fileName)
+	{
+		panel.changePanelImg(fileName);
+	}
+	
 }

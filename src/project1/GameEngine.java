@@ -13,7 +13,7 @@ package project1;
 public class GameEngine
 {
     private Parser parser;
-    private Room currentRoom;
+    public Room currentRoom;
     private UserInterface gui;
 
     /**
@@ -37,12 +37,11 @@ public class GameEngine
      */
     private void printWelcome()
     {
-        gui.print("\n");
         gui.println("Välkommen till detta fantastiska spel!");
         gui.print("\n");
         gui.println(currentRoom.getLongDescription());
         //gui.showImage("tomt.jpg");
-        gui.showImage(currentRoom);
+        //gui.showImage(currentRoom);
         //gui.setButtons("bloo");
         //gui.setButtons(currentRoom.getExits());
     }
@@ -65,6 +64,9 @@ public class GameEngine
         // initialise room exits
         centrum.setExit("shop", shop);
         centrum.setExit("tomt", tomt);
+        //centrum.setExit("spel1", spel1);
+        //centrum.setExit("spel2", spel2);
+        //centrum.setExit("spel3", spel3);
         
         shop.setExit("centrum", centrum);
 
@@ -167,6 +169,7 @@ public class GameEngine
     	gui.println(currentRoom.getLongDescription());
     	gui.showImage(currentRoom);
         gui.setButtons(currentRoom.getExits());
+        gui.setBackground(currentRoom.getBackground());
     }
 
     private void endGame()
@@ -175,4 +178,8 @@ public class GameEngine
         gui.enable(false);
     }
 
+    public Room getCurrentRoom()
+    {
+    	return currentRoom;
+    }
 }

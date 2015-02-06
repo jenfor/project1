@@ -1,4 +1,5 @@
 package project1;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -33,17 +34,22 @@ public class Room
 {
     private String description;
     private String pictureName;
+    private String backgroundName;
     private HashMap<String,Room> exits;        // stores exits of this room.
     private String exit;
     private ImageIcon roomIcon;
+    private Image backgroundImage;
 
 
     public Room(String description, String pictureName) 
     {
+    	String temp = pictureName;
         this.description = description;
         this.pictureName = pictureName;
+        backgroundName = pictureName;
         createPicture();
         exits = new HashMap<String,Room>();
+        createBackground(pictureName);
     }
 
     /**
@@ -124,6 +130,24 @@ public class Room
     public ImageIcon getPicture()
     {	
     	return roomIcon;
+    }
+    
+    public void createBackground(String fileName)
+    {
+    	System.out.println(fileName);
+    	URL imageURL = this.getClass().getClassLoader().getResource(fileName);
+	    try {
+			backgroundImage = ImageIO.read(new File(imageURL.getPath() ));
+		} catch (NullPointerException e) {
+			System.out.println("Bråkig bakgrund: null pointer: " + fileName);
+		} catch (IOException e) {
+			System.out.println("Bråkig bakgrund: io");
+		}
+    }
+    
+    public Image getBackground()
+    {	
+    	return backgroundImage;
     }
     
     public String getExits()
