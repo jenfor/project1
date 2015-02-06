@@ -13,9 +13,6 @@ public class JPanelWithBackground extends JPanel{
 	private Image backgroundImage;
 	private URL imageURL;
 
-	  // Some code to initialize the background image.
-	  // Here, we use the constructor to load the image. This
-	  // can vary depending on the use case of the panel.
 	  public JPanelWithBackground(String fileName) throws IOException{
 		imageURL = this.getClass().getClassLoader().getResource(fileName);
 	    backgroundImage = ImageIO.read(new File(imageURL.getPath() ));
@@ -31,8 +28,6 @@ public class JPanelWithBackground extends JPanel{
 	  public void changePanelImg(Image fileName)
 	  {
 			backgroundImage = fileName;
-			/*imageURL = this.getClass().getClassLoader().getResource(fileName);
-			backgroundImage = ImageIO.read(new File(imageURL.getPath() ));*/
 
 	  }
 	  

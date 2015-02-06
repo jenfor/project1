@@ -15,6 +15,8 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /*
  * Class Room - a room in an adventure game.
@@ -30,7 +32,7 @@ import javax.swing.ImageIcon;
  * @version (date)
  */
 
-public class Room 
+public class Room extends UserInterface
 {
     private String description;
     private String pictureName;
@@ -40,6 +42,8 @@ public class Room
     private ImageIcon roomIcon;
     private Image backgroundImage;
 
+
+    public Room(){}
 
     public Room(String description, String pictureName) 
     {
@@ -160,5 +164,12 @@ public class Room
     	return exits;
     }
 
+	public JPanel getRoomPanel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+    
+
+	
 }
 

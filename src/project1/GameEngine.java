@@ -55,6 +55,7 @@ public class GameEngine
         // create the rooms
         centrum = new Room("i mitten av världen","stig.jpg");
         shop = new Room("i affären","slott.jpg");
+        //shop = new Shop("i affären","slott.jpg");
         tomt = new Room("på din tomt","grasspltt.jpg");
         spel1 = new Room("vid spel 1","minispel1.jpg");
         spel2 = new Room("vid spel 2","strand.jpg");
@@ -168,9 +169,10 @@ public class GameEngine
     private void updateRoom()
     {  
     	gui.println(currentRoom.getLongDescription());
-    	gui.showImage(currentRoom);
+    	//gui.showImage(currentRoom);
         gui.setButtons(currentRoom.getExits());
         gui.setBackground(currentRoom.getBackground());
+    	//gui.setRoomPanel(currentRoom.getRoomPanel());
     }
 
     private void endGame()

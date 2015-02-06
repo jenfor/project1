@@ -37,6 +37,9 @@ public class UserInterface implements ActionListener
      * 
      * @param gameEngine  The GameEngine object implementing the game logic.
      */
+    
+    public UserInterface(){}
+    
     public UserInterface(GameEngine gameEngine)
     {
         engine = gameEngine;
@@ -80,9 +83,6 @@ public class UserInterface implements ActionListener
         image.setIcon(ikon);
         myFrame.pack();
         
-        /*Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        myFrame.setLocation(d.width/2 - myFrame.getWidth()/2, d.height/2 - myFrame.getHeight()/2);
-        myFrame.setVisible(true); */
         
        
     	
@@ -117,7 +117,10 @@ public class UserInterface implements ActionListener
         
         
         myFrame.setPreferredSize(new Dimension((int)width, (int)height));
+        myFrame.setMinimumSize(new Dimension((int)width, (int)height));
         myFrame.setResizable(false);
+        myFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
 
         log = new JTextArea();
         log.setEditable(false);
@@ -182,17 +185,18 @@ public class UserInterface implements ActionListener
         image.setHorizontalAlignment(JLabel.CENTER);
         
 
-        JPanel panelClickable = new JPanel();
         JPanel p = new JPanel(new GridLayout(4,1));
         JPanel p2 = new JPanel(new GridLayout(4,1));
         JPanel b = new JPanel();
         
-        panelClickable.setOpaque(false);
         
         
         //***************************************************************************************
         //Knappar på bilden
         
+        JPanel panelClickable = new JPanel();
+        
+        panelClickable.setOpaque(false);
         //panelClickable.setLayout(new GridLayout(4,4));
         panelClickable.setLayout(null);
         JButton clickButton = new JButton ("Skylt");
@@ -238,7 +242,7 @@ public class UserInterface implements ActionListener
         //panel.add(p,BorderLayout.WEST);
         
         //panel.add(button8);
-        panel.add(panelClickable);
+        panel.add(panelClickable); //**********************lägger till skyltarna i panelen
         
         panel.setPreferredSize(new Dimension((int)width, (int)height)); //bildstorlek, gör om till att skala
         panel.setMinimumSize(new Dimension((int)width, (int)height)); //istället för att skära av
@@ -391,7 +395,7 @@ public class UserInterface implements ActionListener
         
         
         
-        //*****************************************
+        //*********************************************************************************'
         
 
         myFrame.pack();
@@ -425,13 +429,7 @@ public class UserInterface implements ActionListener
     
 	public void setButtons(String exit)
     {
-		//JButton exitButton = new JButton("setButton");
-    	//exitButton.setLabel("setButton");
-    	//p.add(exitButton);
     	exitButton.setLabel(exit);
-        /*Set keys = exits.keySet();
-        for(Iterator iter = keys.iterator(); iter.hasNext(); )
-        	button.setLabel((String)iter.next());*/
         
     }
 	
@@ -446,31 +444,20 @@ public class UserInterface implements ActionListener
 			
 			exitString = exits.get(temp);
 			exitButtons.get(temp).setLabel(exitString);
-
-			//exitButtons.get(temp);
-			//setLabel(exitString);
 			
 		}
-		
-		/*Set keys = exits.keySet();
-		for(Iterator iter = keys.iterator(); iter.hasNext(); )
-		{
-			iter. = new JButton("exit");
-		}*/
-		
-		//JButton exitButton = new JButton("setButton");
-    	//exitButton.setLabel("setButton");
-    	//p.add(exitButton);
-    	//button.setLabel(exits);
-        /*Set keys = exits.keySet();
-        for(Iterator iter = keys.iterator(); iter.hasNext(); )
-        	button.setLabel((String)iter.next());*/
-        
     }
 	
 	public void setBackground(Image fileName)
 	{
 		panel.changePanelImg(fileName);
+		panel.repaint();
 	}
+	
+	public void setRoomPanel(JPanel roomPanel)
+	{
+		panel.add(roomPanel);
+	}
+	
 	
 }
