@@ -16,7 +16,8 @@ public class JPanelWithBackground extends JPanel{
 	  // Here, we use the constructor to load the image. This
 	  // can vary depending on the use case of the panel.
 	  public JPanelWithBackground(String fileName) throws IOException{
-	    backgroundImage = ImageIO.read(new File(fileName));
+		URL imageURL = this.getClass().getClassLoader().getResource(fileName);
+	    backgroundImage = ImageIO.read(new File(imageURL.getPath() ));
 	  }
 
 	  public void paintComponent(Graphics g) {

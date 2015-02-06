@@ -3,6 +3,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -132,6 +133,15 @@ public class UserInterface implements ActionListener
         JButton button7 = new JButton("Pengar");
         JButton button9 = new JButton("eeee");
         
+        JButton button8 = new JButton("nijhiuhu");
+        
+        button8.setPreferredSize(new Dimension(1,1));
+        button8.setLayout(null);
+		button8.setLocation(0,0);
+		button8.setOpaque(false);
+		button8.setContentAreaFilled(false);
+		button8.setBorderPainted(false);
+        
         int i = 0; 
         
         
@@ -145,11 +155,24 @@ public class UserInterface implements ActionListener
         //listScroller.setPreferredSize(new Dimension(200, 200));
         //listScroller.setMinimumSize(new Dimension(200,200));
         
+
+        
         textBox.setPreferredSize(new Dimension( (int)textWidth, (int)textHeight));
         textBox.setMinimumSize(new Dimension( (int)textWidth , (int)textHeight));
         
 
         JPanel panel = new JPanel();
+        
+        try {
+			panel = new JPanelWithBackground("sno.jpg");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			
+			e1.printStackTrace();
+		}
+        
+      //JPanel bc = new JPanel(new GridLayout(4,1));
+        
         image = new JLabel();
         button2.setPreferredSize(new Dimension(100, 100));
         button6.setPreferredSize(new Dimension(100, 100));
@@ -157,6 +180,8 @@ public class UserInterface implements ActionListener
         image.setPreferredSize(new Dimension((int)imgWidth, ((int)imgHeight) - (int)textHeight)); //bildstorlek, gör om till att skala
         image.setMinimumSize(new Dimension((int)imgWidth, ((int)imgHeight) - (int)textHeight)); //istället för att skära av
         image.setHorizontalAlignment(JLabel.CENTER);
+        
+
         
         JPanel p = new JPanel(new GridLayout(4,1));
         JPanel p2 = new JPanel(new GridLayout(4,1));
@@ -175,9 +200,11 @@ public class UserInterface implements ActionListener
         
         b.add(button4);
         b.add(button5);
+        
+      //bc.add(button8);
 
         panel.setLayout(new BorderLayout());
-        panel.add(image, BorderLayout.CENTER);
+        //panel.add(image, BorderLayout.CENTER);
         panel.add(textBox, BorderLayout.AFTER_LAST_LINE);
         //panel.add(entryField, BorderLayout.NORTH);
         panel.add(p, BorderLayout.WEST);
@@ -185,6 +212,9 @@ public class UserInterface implements ActionListener
         panel.add(b, BorderLayout.NORTH);
 
         //panel.add(p,BorderLayout.WEST);
+        
+      //panel.add(bc, BorderLayout.CENTER);
+        panel.add(button8);
 
         myFrame.getContentPane().add(panel, BorderLayout.NORTH);
 
