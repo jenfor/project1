@@ -3,6 +3,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -129,8 +130,15 @@ public class UserInterface implements ActionListener
         JButton button5 = new JButton("Pengar");
         JButton button6 = new JButton("Föremål");
         JButton button7 = new JButton("Pengar");
-        
-        
+        JButton button8 = new JButton("nijhiuhu");
+       
+        button8.setPreferredSize(new Dimension(1,1));
+        button8.setLayout(null);
+		button8.setLocation(0,0);
+	//	button8.setOpaque(false);
+		//button8.setContentAreaFilled(false);
+	//	button8.setBorderPainted(false);
+
         
         //listScroller.setPreferredSize(new Dimension(200, 200));
         //listScroller.setMinimumSize(new Dimension(200,200));
@@ -140,6 +148,13 @@ public class UserInterface implements ActionListener
         
 
         JPanel panel = new JPanel();
+		try {
+			panel = new JPanelWithBackground("C:/Users/Jenny/objektapp/project1/pictures/sno.jpg");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			
+			e1.printStackTrace();
+		}
         image = new JLabel();
         button2.setPreferredSize(new Dimension(100, 100));
         button6.setPreferredSize(new Dimension(100, 100));
@@ -151,7 +166,7 @@ public class UserInterface implements ActionListener
         JPanel p = new JPanel(new GridLayout(4,1));
         JPanel p2 = new JPanel(new GridLayout(4,1));
         JPanel b = new JPanel();
-        
+        //JPanel bc = new JPanel(new GridLayout(4,1));
         
         
         b.setLayout(new BoxLayout(b, BoxLayout.X_AXIS));
@@ -159,6 +174,7 @@ public class UserInterface implements ActionListener
         p.add(button2);
         p.add(button3);
         p.add(button);
+        //bc.add(button8);
         
         p2.add(button6);
         p2.add(button7);
@@ -167,13 +183,15 @@ public class UserInterface implements ActionListener
         b.add(button5);
 
         panel.setLayout(new BorderLayout());
-        panel.add(image, BorderLayout.CENTER);
+        //panel.add(image, BorderLayout.CENTER);
         panel.add(textBox, BorderLayout.AFTER_LAST_LINE);
         //panel.add(entryField, BorderLayout.NORTH);
         panel.add(p, BorderLayout.WEST);
         panel.add(p2, BorderLayout.EAST);
         panel.add(b, BorderLayout.NORTH);
-
+        //panel.add(bc, BorderLayout.CENTER);
+        panel.add(button8);
+       
         //panel.add(p,BorderLayout.WEST);
 
         myFrame.getContentPane().add(panel, BorderLayout.NORTH);
