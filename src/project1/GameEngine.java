@@ -29,6 +29,7 @@ public class GameEngine
     {
         gui = userInterface;
         printWelcome();
+        updateRoom();
     }
 
     /**
@@ -42,6 +43,8 @@ public class GameEngine
         gui.println(currentRoom.getLongDescription());
         //gui.showImage("tomt.jpg");
         gui.showImage(currentRoom);
+        //gui.setButtons("bloo");
+        //gui.setButtons(currentRoom.getExits());
     }
 
     /**
@@ -74,8 +77,7 @@ public class GameEngine
 
         spel3.setExit("spel2", spel2);
 
-        currentRoom = centrum;  // start game outside
-        
+        currentRoom = centrum; // start game outside
     }
 
     /**
@@ -83,6 +85,8 @@ public class GameEngine
      * If this command ends the game, true is returned, otherwise false is
      * returned.
      */
+    
+    
     public void interpretCommand(String commandLine) 
     {
         gui.println(commandLine);
@@ -132,8 +136,7 @@ public class GameEngine
             gui.println("There is no door!");
         else {
             currentRoom = nextRoom;
-            gui.println(currentRoom.getLongDescription());
-            gui.showImage(currentRoom);
+            updateRoom();
         }
     }
     
@@ -157,6 +160,13 @@ public class GameEngine
             currentRoom = nextRoom;
             gui.println(currentRoom.getLongDescription());
         }
+    }
+    
+    private void updateRoom()
+    {  
+    	gui.println(currentRoom.getLongDescription());
+    	gui.showImage(currentRoom);
+        gui.setButtons(currentRoom.getExits());
     }
 
     private void endGame()

@@ -25,6 +25,7 @@ public class UserInterface implements ActionListener
     private JLabel image;
     ImageIcon ikon;
     private JButton button;
+    private HashMap<String,JButton> exitButtons = new HashMap<String,JButton>();
     
 
     /**
@@ -122,15 +123,24 @@ public class UserInterface implements ActionListener
         JScrollPane textBox = new JScrollPane(log);
         
         button = new JButton("Exit");
-        //JButton button = new JButton("Button 1");
+        //JButton exitButton = new JButton("Button 1");
         JButton button2 = new JButton("Affär");
         JButton button3 = new JButton("Karta");
         JButton button4 = new JButton("Föremål");
         JButton button5 = new JButton("Pengar");
         JButton button6 = new JButton("Föremål");
         JButton button7 = new JButton("Pengar");
+        JButton button9 = new JButton("eeee");
+        
+        int i = 0; 
         
         
+        for(i = 0; i < 3; i++)
+        {
+        	String tempString = "" + i;
+        	//exitButtons.put(tempString, new JButton("Exit"));
+        	exitButtons.put("0", button9);
+        }
         
         //listScroller.setPreferredSize(new Dimension(200, 200));
         //listScroller.setMinimumSize(new Dimension(200,200));
@@ -341,9 +351,24 @@ public class UserInterface implements ActionListener
         engine.interpretCommand(input);
     }
     
-    public void setButtons(HashMap<String,Room> exits)
+	public void setButtons(String exit)
     {
-    	
+		//JButton exitButton = new JButton("setButton");
+    	//exitButton.setLabel("setButton");
+    	//p.add(exitButton);
+    	button.setLabel(exit);
+        /*Set keys = exits.keySet();
+        for(Iterator iter = keys.iterator(); iter.hasNext(); )
+        	button.setLabel((String)iter.next());*/
+        
+    }
+	
+	public void setAllButtons(HashMap<String,Room> exits)
+    {
+		//JButton exitButton = new JButton("setButton");
+    	//exitButton.setLabel("setButton");
+    	//p.add(exitButton);
+    	//button.setLabel(exits);
         /*Set keys = exits.keySet();
         for(Iterator iter = keys.iterator(); iter.hasNext(); )
         	button.setLabel((String)iter.next());*/

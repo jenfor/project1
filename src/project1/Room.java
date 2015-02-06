@@ -34,6 +34,7 @@ public class Room
     private String description;
     private String pictureName;
     private HashMap<String,Room> exits;        // stores exits of this room.
+    private String exit;
     private ImageIcon roomIcon;
 
 
@@ -50,6 +51,7 @@ public class Room
      */
     public void setExit(String direction, Room neighbor) 
     {
+    	exit = direction; 
         exits.put(direction, neighbor);
     }
 
@@ -124,7 +126,12 @@ public class Room
     	return roomIcon;
     }
     
-    public HashMap<String,Room> getExits()
+    public String getExits()
+    {
+    	return exit;
+    }
+    
+    public HashMap<String,Room> getAllExits()
     {
     	return exits;
     }
