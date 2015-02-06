@@ -1,7 +1,6 @@
 package project1;
 /**
- *  This class is part of the "World of Zuul" application. 
- *  "World of Zuul" is a very simple, text based adventure game.
+ *  Den här klassen skapar rummen och spelet.
  * 
  *  This class creates all rooms, creates the parser and starts
  *  the game.  It also evaluates and executes the commands that 

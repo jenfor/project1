@@ -135,17 +135,17 @@ public class UserInterface implements ActionListener
         JButton button9 = new JButton("eeee");
         
         JButton button8 = new JButton("nijhiuhu");
-        
         button8.setPreferredSize(new Dimension(1,1));
         button8.setLayout(null);
 		button8.setLocation(0,0);
 		button8.setOpaque(false);
 		button8.setContentAreaFilled(false);
 		button8.setBorderPainted(false);
+		
+        button2.setPreferredSize(new Dimension(100, 100));
+        button6.setPreferredSize(new Dimension(100, 100));
         
         int i = 0; 
-        
-        
         for(i = 0; i < 3; i++)
         {
         	String tempString = "" + i;
@@ -173,22 +173,41 @@ public class UserInterface implements ActionListener
 			e1.printStackTrace();
 		}
         
-      //JPanel bc = new JPanel(new GridLayout(4,1));
         
+
         image = new JLabel();
-        button2.setPreferredSize(new Dimension(100, 100));
-        button6.setPreferredSize(new Dimension(100, 100));
-        
+
         image.setPreferredSize(new Dimension((int)imgWidth, ((int)imgHeight) - (int)textHeight)); //bildstorlek, gör om till att skala
         image.setMinimumSize(new Dimension((int)imgWidth, ((int)imgHeight) - (int)textHeight)); //istället för att skära av
         image.setHorizontalAlignment(JLabel.CENTER);
         
 
-        
+        JPanel panelClickable = new JPanel();
         JPanel p = new JPanel(new GridLayout(4,1));
         JPanel p2 = new JPanel(new GridLayout(4,1));
         JPanel b = new JPanel();
         
+        panelClickable.setOpaque(false);
+        
+        
+        //***************************************************************************************
+        //Knappar på bilden
+        
+        //panelClickable.setLayout(new GridLayout(4,4));
+        panelClickable.setLayout(null);
+        JButton clickButton = new JButton ("Skylt");
+        clickButton.setBounds(4,6,200,400);
+        clickButton.setContentAreaFilled(false);
+        //clickButton.setBorderPainted(false); //med eller utan kant
+        panelClickable.add(clickButton);
+        
+        JButton clickButton2 = new JButton ("Skylt2");
+        clickButton2.setBounds(300,400,200,200);
+        clickButton2.setContentAreaFilled(false);
+        //clickButton.setBorderPainted(false); //med eller utan kant
+        panelClickable.add(clickButton2);
+        
+        //***************************************************************************************
         
         
         b.setLayout(new BoxLayout(b, BoxLayout.X_AXIS));
@@ -197,8 +216,6 @@ public class UserInterface implements ActionListener
         p.add(mapButton);
         p.add(exitButton);
         
-        //p2.add(button6);
-        //p2.add(button7);
         
         b.add(button4);
         b.add(button5);
@@ -210,20 +227,18 @@ public class UserInterface implements ActionListener
 			p2.add(exitButtons.get(temp));
 		}
         
-      //bc.add(button8);
 
         panel.setLayout(new BorderLayout());
-        //panel.add(image, BorderLayout.CENTER);
         panel.add(textBox, BorderLayout.AFTER_LAST_LINE);
-        //panel.add(entryField, BorderLayout.NORTH);
         panel.add(p, BorderLayout.WEST);
         panel.add(p2, BorderLayout.EAST);
         panel.add(b, BorderLayout.NORTH);
-
+        //panel.add(image, BorderLayout.CENTER);
+        //panel.add(entryField, BorderLayout.NORTH);
         //panel.add(p,BorderLayout.WEST);
         
-      //panel.add(bc, BorderLayout.CENTER);
-        panel.add(button8);
+        //panel.add(button8);
+        panel.add(panelClickable);
         
         panel.setPreferredSize(new Dimension((int)width, (int)height)); //bildstorlek, gör om till att skala
         panel.setMinimumSize(new Dimension((int)width, (int)height)); //istället för att skära av
@@ -259,7 +274,7 @@ public class UserInterface implements ActionListener
 
         entryField.addActionListener(this);
         
-        //*************************************************************
+        //***********************************************************************************************************************
         
       //Where the GUI is created:
         JMenuBar menuBar;
