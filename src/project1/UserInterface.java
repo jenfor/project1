@@ -411,14 +411,14 @@ public class UserInterface implements ActionListener
     {
         // no need to check the type of action at the moment.
         // there is only one possible action: text entry
-        processCommand();
+       // processCommand();
     }
 
     /**
      * A command has been entered. Read the command and do whatever is 
      * necessary to process it.
      */
-    private void processCommand()
+ /*   private void processCommand()
     {
         boolean finished = false;
         String input = entryField.getText();
@@ -426,7 +426,7 @@ public class UserInterface implements ActionListener
 
         engine.interpretCommand(input);
     }
-    
+  */  
 	public void setButtons(String exit)
     {
     	exitButton.setLabel(exit);

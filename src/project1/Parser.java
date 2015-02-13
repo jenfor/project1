@@ -1,8 +1,8 @@
-package project1;
+/*package project1;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-/**
+
  * This class is part of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.  
  * 
@@ -17,22 +17,22 @@ import java.util.StringTokenizer;
  * 
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
- */
+
 public class Parser 
 {
     private CommandWords commands;  // holds all valid command words
 
-    /**
+
      * Create a parser to read from the terminal window.
-     */
+
     public Parser() 
     {
         commands = new CommandWords();
     }
 
-    /**
+
      * @return The next command from the user.
-     */
+
     public Command getCommand(String inputLine) 
     {
         //String inputLine;   // will hold the full input line
@@ -59,11 +59,11 @@ public class Parser
         }
     }
 
-    /**
      * Return a list of valid command words.
-     */
+
     public String showCommands()
     {
         return commands.showAll();
     }
 }
+*/

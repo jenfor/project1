@@ -1,5 +1,5 @@
-package project1;
-/*
+/*package project1;
+
  * This class is the main class of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.
  * 
@@ -8,7 +8,7 @@ package project1;
  *
  * @author  (NN)
  * @version (date)
- */
+
 
 public class CommandWords
 {
@@ -17,18 +17,18 @@ public class CommandWords
         "go", "quit", "help"
     };
 
-    /**
+
      * Constructor - initialise the command words.
-     */
+
     public CommandWords()
     {
         // nothing to do at the moment...
     }
 
-    /**
+
      * Check whether a given String is a valid command word. 
      * Return true if it is, false if it isn't.
-     **/
+
     public boolean isCommand(String aString)
     {
         for(int i = 0; i < validCommands.length; i++) {
@@ -39,9 +39,9 @@ public class CommandWords
         return false;
     }
 
-    /*
+
      * returns a String of all valid commands.
-     */
+
     public String showAll() 
     {
         StringBuffer commands = new StringBuffer();
@@ -51,3 +51,4 @@ public class CommandWords
         return commands.toString();
     }
 }
+     */

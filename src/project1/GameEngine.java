@@ -11,7 +11,7 @@ package project1;
  */
 public class GameEngine
 {
-    private Parser parser;
+  //  private Parser parser;
     public Room currentRoom;
     private UserInterface gui;
 
@@ -20,7 +20,7 @@ public class GameEngine
      */
     public GameEngine()
     {
-        parser = new Parser();
+       // parser = new Parser();
         createRooms();
     }
 
@@ -90,7 +90,7 @@ public class GameEngine
      * returned.
      */
     
-    
+/*   
     public void interpretCommand(String commandLine) 
     {
         gui.println(commandLine);
@@ -113,7 +113,7 @@ public class GameEngine
                 endGame();
         }
     }
-
+*/
     // implementations of user commands:
 
     /**
@@ -121,6 +121,7 @@ public class GameEngine
      * Here we print some stupid, cryptic message and a list of the 
      * command words.
      */
+    /*
     private void printHelp() 
     {
         gui.println("You are lost. You are alone. You wander");
@@ -128,7 +129,7 @@ public class GameEngine
         gui.print("Your command words are: " + parser.showCommands());
     }
 
-    /** 
+ 
      * Try to go to one direction. If there is an exit, enter the new
      * room, otherwise print an error message.
      */
@@ -143,19 +144,19 @@ public class GameEngine
             updateRoom();
         }
     }
-    
+ /*   
     private void goRoom(Command command) 
     {
         
-    	/*if(!command.hasSecondWord()) {
+    	if(!command.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             gui.println("Go where?");
             return;
-        }*/
+        }
     
         String direction = command.getSecondWord();
 
-        // Try to leave current room.
+         Try to leave current room.
         Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null)
@@ -165,7 +166,7 @@ public class GameEngine
             gui.println(currentRoom.getLongDescription());
         }
     }
-    
+ */   
     private void updateRoom()
     {  
     	gui.println(currentRoom.getLongDescription());
